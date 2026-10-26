@@ -67,7 +67,7 @@ tbody tr:nth-child(even) td.nm{background:var(--card)}
 </section>
 <p class="note" id="maj"></p>
 </main>
-<script src="donnees.js"></script>
+<script>document.write('<script src="donnees.js?v='+Math.floor(Date.now()/60000)+'"><\/script>');</script>
 <script>
 const X=window.DONNEES;
 const $=s=>document.querySelector(s);
