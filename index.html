@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Croquet à 2 boules – 2027</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+:root{--bg:#f4f9fb;--ink:#12324a;--mute:#5b7487;--head:#b8dce8;--band:#e1f0f5;--card:#fff;--line:#c5dde6;--acc:#0f6b73;--accink:#fff;--diag:#d9e3e8;--win:#0f6b73;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1b24;--ink:#e3eff5;--mute:#93aebd;--head:#1d4357;--band:#15303f;--card:#112431;--line:#25495c;--acc:#6cc3c9;--accink:#08222a;--diag:#1b3342;--win:#6cc3c9;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0e1b24;--ink:#e3eff5;--mute:#93aebd;--head:#1d4357;--band:#15303f;--card:#112431;--line:#25495c;--acc:#6cc3c9;--accink:#08222a;--diag:#1b3342;--win:#6cc3c9;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Source Sans 3",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;font-size:17px;line-height:1.4}
+main{max-width:860px;margin:0 auto;padding:20px 14px 40px}
+header{text-align:center;margin-bottom:18px}
+h1{font-size:2rem;margin:0;font-weight:700;letter-spacing:.2px}
+.sub{font-size:1.25rem;font-weight:600;margin:2px 0 0}
+.bar{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px;margin:16px 0 4px}
+.saisie{font-weight:600;text-decoration:none;background:var(--ink);color:var(--bg);padding:11px 22px;border-radius:999px;border:2px solid var(--ink)}
+.saisie:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.nav{display:inline-flex;margin:0;border:2px solid var(--acc);border-radius:999px;overflow:hidden}
+.nav button{font:inherit;font-weight:600;border:0;background:transparent;color:var(--acc);padding:9px 20px;cursor:pointer}
+.nav button[aria-pressed="true"]{background:var(--acc);color:var(--accink)}
+.nav button:focus-visible{outline:3px solid var(--ink);outline-offset:-3px}
+h2{font-size:1.15rem;font-weight:600;text-align:center;margin:14px 0 10px;color:var(--mute)}
+.wrap{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:6px}
+table{border-collapse:collapse;width:100%}
+th{background:var(--head);font-weight:600;padding:10px 8px;border:1px solid var(--line)}
+td{padding:8px;border:1px solid var(--line);text-align:center;white-space:nowrap}
+tbody tr:nth-child(odd) td{background:var(--band)}
+td.nm,th.nm{text-align:left;position:sticky;left:0;z-index:1}
+#cl td.nm{background:inherit}
+tbody tr:nth-child(odd) td.nm{background:var(--band)}
+tbody tr:nth-child(even) td.nm{background:var(--card)}
+#cl .pos{width:70px}
+.vt{writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap;padding:8px 4px;font-size:.95rem;min-width:34px}
+#gr td{min-width:76px;font-variant-numeric:tabular-nums}
+#gr td.dg{background:var(--diag)!important}
+#gr td.w{font-weight:600}
+.note{color:var(--mute);font-size:.9rem;margin:10px 2px 0}
+[hidden]{display:none}
+</style>
+</head>
+<body>
+<main>
+<header>
+<h1>Domaine de la Chute</h1>
+<p class="sub">Croquet à 2 boules  –  2027</p>
+<div class="bar">
+<a class="saisie" href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAEaGFh9_9ZUMDdOWENCUEk3RVFNRFJUM0JPTElVNEVQVC4u" target="_blank" rel="noopener">Saisir un résultat</a>
+<div class="nav" role="group" aria-label="Choix de l’affichage">
+<button id="b-resultats" aria-pressed="false">Résultats par participant</button>
+<button id="b-classement" aria-pressed="true">Classement</button>
+</div>
+</div>
+</header>
+<section id="v-classement">
+<h2>Classement des participants</h2>
+<div class="wrap"><table id="cl"><thead><tr><th class="pos">Position</th><th class="nm">Équipes</th><th>PJ</th><th>VIC</th><th>PP</th><th>PC</th></tr></thead><tbody></tbody></table></div>
+</section>
+<section id="v-resultats" hidden>
+<h2>Résultats par participant</h2>
+<div class="wrap"><table id="gr"><thead></thead><tbody></tbody></table></div>
+<p class="note">Chaque case montre le pointage du joueur de la ligne contre le joueur de la colonne : première partie – deuxième partie.</p>
+</section>
+<p class="note" id="maj"></p>
+</main>
+<script src="donnees.js"></script>
+<script>
+const X=window.DONNEES;
+const $=s=>document.querySelector(s);
+const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+if(!X){$('main').insertAdjacentHTML('beforeend','<p class="note">Les données sont introuvables (fichier donnees.js manquant).</p>');}
+else{
+$('h1').textContent=X.titre;$('.sub').textContent=X.sousTitre;document.title=X.titre;
+$('#cl tbody').innerHTML=X.classement.map(p=>`<tr><td>${p.pos}</td><td class="nm">${esc(p.nom)}</td><td>${p.pj}</td><td>${p.vic}</td><td>${p.pp}</td><td>${p.pc}</td></tr>`).join('');
+$('#gr thead').innerHTML='<tr><th class="nm">Participant</th>'+X.joueurs.map(n=>`<th><div class="vt">${esc(n)}</div></th>`).join('')+'</tr>';
+$('#gr tbody').innerHTML=X.joueurs.map((n,i)=>`<tr><td class="nm">${esc(n)}</td>`+X.grille[i].map((c,j)=>i===j?'<td class="dg"></td>':`<td${c?' class="w"':''}>${esc(c)}</td>`).join('')+'</tr>').join('');
+$('#maj').textContent='Mis à jour : '+X.misAJour;
+}
+function show(v){
+  for(const k of ['classement','resultats']){
+    $('#v-'+k).hidden=k!==v;
+    $('#b-'+k).setAttribute('aria-pressed',k===v);
+  }
+  try{history.replaceState(null,'','#'+v)}catch(e){}
+}
+$('#b-classement').onclick=()=>show('classement');
+$('#b-resultats').onclick=()=>show('resultats');
+show(location.hash==='#resultats'?'resultats':'classement');
+</script>
+</body>
+</html>
