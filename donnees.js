@@ -1,7 +1,7 @@
 window.DONNEES = {
  "titre": "Domaine de la Chute",
  "sousTitre": "Croquet \u00E0 2 boules  -  2027",
- "misAJour": "2026-10-29 22:03",
+ "misAJour": "2026-10-29 23:10",
  "classement": [
   {"pos": 1, "nom": "Guy, G.", "pj": 2, "vic": 1, "pp": 64, "pc": 54},
   {"pos": 2, "nom": "Richard, P.", "pj": 2, "vic": 1, "pp": 54, "pc": 64},
@@ -14,7 +14,7 @@ window.DONNEES = {
   {"pos": 9, "nom": "Raynald, G.", "pj": 0, "vic": 0, "pp": 0, "pc": 0},
   {"pos": 10, "nom": "Jean-Rock, A.", "pj": 0, "vic": 0, "pp": 0, "pc": 0}
  ],
- "joueurs": ["Jean-Rock, A.", "Richard, B. (King)", "Denis,", "Guy,", "Jean,", "Richard,", "Andr\u00E9,", "Denis,", "Alain,", "Raynald,"],
+ "joueurs": ["Jean-Rock, A.", "Richard, B. (King)", "Denis, G.", "Guy, G.", "Jean, L.", "Richard, P.", "Andr\u00E9, P.", "Denis, S.", "Alain, T.", "Raynald, G."],
  "grille": [
   ["", "", "", "", "", "", "", "", "", ""],
   ["", "", "", "", "", "", "", "", "", ""],
